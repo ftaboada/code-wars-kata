@@ -156,4 +156,16 @@ function solve(str) {
   }
   return newstr.toString();
 }
-// Longest alphabetical substring
+// Isograms 7kyu
+function isIsogram(str) {
+  str = str.toLowerCase();
+  const strlen = str.length;
+  for (let i = 0; i < strlen; i++) {
+    for (let j = 1; j < strlen; j++) {
+      if (j !== i && str[i] === str[j]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
