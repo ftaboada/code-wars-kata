@@ -156,6 +156,21 @@ function solve(str) {
   }
   return newstr.toString();
 }
+// Hello, Name or World!
+function hello(name) {
+  if (name !== undefined && name !== "") {
+    name = name.toLowerCase();
+    newName = "";
+    newName += name[0].toUpperCase();
+    const nameLen = name.length;
+    for (let i = 1; i < nameLen; i++) {
+      newName += name[i];
+    }
+    return "Hello, " + newName + "!";
+  } else {
+    return "Hello, World!";
+  }
+}
 // Isograms 7kyu
 function isIsogram(str) {
   str = str.toLowerCase();
@@ -168,4 +183,197 @@ function isIsogram(str) {
     }
   }
   return true;
+}
+// diagonals sum
+function sum(matrix) {
+  let sum = 0;
+  let k = matrix.length - 1;
+  for (let i = 0; i < matrix.length; i++) {
+    sum += matrix[i][k];
+    sum += matrix[i][i];
+    k--;
+  }
+
+  return sum;
+}
+//subtract the sum
+function SubtractSum(n) {
+  const fruitsArr = [
+    0,
+    "kiwi",
+    "pear",
+    "kiwi",
+    "banana",
+    "melon",
+    "banana",
+    "melon",
+    "pineapple",
+    "apple",
+    "pineapple", //10
+    "cucumber",
+    "pineapple",
+    "cucumber",
+    "orange",
+    "grape",
+    "orange",
+    "grape",
+    "apple",
+    "grape",
+    "cherry", //20
+    "pear",
+    "cherry",
+    "pear",
+    "kiwi",
+    "banana",
+    "kiwi",
+    "apple",
+    "melon",
+    "banana",
+    "melon", //30
+    "pineapple",
+    "melon",
+    "pineapple",
+    "cucumber",
+    "orange",
+    "apple",
+    "orange",
+    "grape",
+    "orange",
+    "grape", //40
+    "cherry",
+    "pear",
+    "cherry",
+    "pear",
+    "apple",
+    "pear",
+    "kiwi",
+    "banana",
+    "kiwi",
+    "banana", //50
+    "melon",
+    "pineapple",
+    "melon",
+    "apple",
+    "cucumber",
+    "pineapple",
+    "cucumber",
+    "orange",
+    "cucumber",
+    "orange", //60
+    "grape",
+    "cherry",
+    "apple",
+    "cherry",
+    "pear",
+    "cherry",
+    "pear",
+    "kiwi",
+    "pear",
+    "kiwi", //70
+    "banana",
+    "apple",
+    "banana",
+    "melon",
+    "pineapple",
+    "melon",
+    "pineapple",
+    "cucumber",
+    "pineapple",
+    "cucumber", //80
+    "apple",
+    "grape",
+    "orange",
+    "grape",
+    "cherry",
+    "grape",
+    "cherry",
+    "pear",
+    "cherry",
+    "apple", //90
+    "kiwi",
+    "banana",
+    "kiwi",
+    "banana",
+    "melon",
+    "banana",
+    "melon",
+    "pineapple",
+    "apple",
+    "pineapple", //100
+  ];
+  let newn = n.toString();
+  let sum = 0;
+  function calculateNum() {
+    const nLen = newn.length;
+    for (let i = 0; i < nLen; i++) {
+      sum += parseInt(newn[i]);
+      console.log(sum);
+    }
+    newn = parseInt(newn) - sum;
+  }
+  if (newn <= 100) {
+    console.log(newn);
+    console.log(parseInt(newn));
+    return fruitsArr[parseInt(newn)];
+  } else {
+    calculateNum();
+  }
+}
+
+// interview Question (easy)
+function getStrings(city) {
+  city = city.toLowerCase();
+  city = city.replace(/\s/g, "");
+  const len = city.length;
+  let cache = {};
+  for (let i = 0; i < len; i++) {
+    if (cache.hasOwnProperty(city[i])) {
+      cache[city[i]] += "*";
+    } else cache[city[i]] = "*";
+  }
+  let values = Object.values(cache);
+  let keys = Object.keys(cache);
+  let result = "";
+  for (let i = 0; i < keys.length; i++) {
+    if (i === keys.length - 1) {
+      result += keys[i] + ":" + values[i];
+    } else {
+      result += keys[i] + ":" + values[i] + ",";
+    }
+  }
+  return result;
+}
+var encryptThis = function (text) {
+  let newStr = [];
+  const len = text.length;
+  text = text.split();
+  //for (let k = 0; k < len; k++) {
+  for (let index = 0; index < len; index++) {
+    if (index === 0) {
+      newStr.push(text[0][0].charCodeAt());
+    } else if (index === len - 2) {
+      newStr.push(text[0][1]);
+    } else if (index === 1) {
+      newStr.push(text[0][len - 2]);
+    } else {
+      newStr.push(text[0][index]);
+    }
+    // }
+  }
+
+  return newStr;
+};
+//
+
+function count(string) {
+  let result = {};
+  for (let i = 0; i < string.length; i++) {
+    if (result.hasOwnProperty(string[i])) {
+      result[string[i]]++;
+    } else {
+      result[string[i]] = 1;
+    }
+  }
+  console.log(result);
+  return result;
 }
